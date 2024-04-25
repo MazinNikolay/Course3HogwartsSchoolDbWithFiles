@@ -56,7 +56,7 @@ public class AvatarServiceImpl implements AvatarService {
     }
 
     private Avatar findAvatar(Long studentId) {
-        return avatarRepository.findByStudent_id(studentId).orElseThrow();
+        return avatarRepository.findByStudentId(studentId).orElseThrow();
     }
 
     private String getExtentions(String fileName) {
