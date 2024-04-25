@@ -15,7 +15,7 @@ public class Avatar {
     private Long id;
 
     private String filePath;
-    private Long fileSize;
+    private long fileSize;
     private String mediaType;
 
     @Lob
@@ -44,7 +44,7 @@ public class Avatar {
         this.filePath = filePath;
     }
 
-    public Long getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
 
