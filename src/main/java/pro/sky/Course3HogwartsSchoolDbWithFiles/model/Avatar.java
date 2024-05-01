@@ -9,9 +9,9 @@ import java.util.Objects;
 @Entity
 public class Avatar {
     @Id
-    @SequenceGenerator(name = "gen", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "gen")
+    //@SequenceGenerator(name = "gen", allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String filePath;

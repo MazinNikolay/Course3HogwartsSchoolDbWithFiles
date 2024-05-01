@@ -8,10 +8,10 @@ import java.util.Objects;
 
 @Entity
 public class Student {
-    @SequenceGenerator(name = "gen", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "gen")
+//    @SequenceGenerator(name = "gen", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -26,10 +26,11 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String name, int age) {
+    public Student(Long id, String name, int age, Faculty facultyId) {
         this.id = id;
         this.age = age;
         this.name = name;
+        this.faculty = facultyId;
     }
 
     public Long getId() {
