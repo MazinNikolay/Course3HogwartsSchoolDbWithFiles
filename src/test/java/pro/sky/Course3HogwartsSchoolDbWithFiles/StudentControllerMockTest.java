@@ -10,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.AvatarController;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.StudentController;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.AvatarRepository;
