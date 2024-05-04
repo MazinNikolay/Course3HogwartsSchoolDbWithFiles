@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.StudentController;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -80,5 +84,34 @@ public class StudentControllerRestTemplateTest {
         ResponseEntity<Student> response = restTemplate.getForEntity("http://localhost:" + port + "/student" + id,
                 Student.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
+
+    @Test
+    void getByAgeBetweenTest() throws Exception {
+        int startAge = 13;
+        int endAge = 15;
+        Faculty faculty = new Faculty(1L, "griffindor", "red");
+        Student newStudent = new Student();
+        newStudent.setId(7L);
+        newStudent.setName("Garry");
+        newStudent.setAge(14);
+        Collection<Student> students = new ArrayList<>();
+        newStudent.setFaculty(faculty);
+        HttpEntity<Collection<Student>> request = new RequestEntity<>(students, HttpMethod.GET, null);
+        ResponseEntity<Collection<Student>> response = restTemplate.exchange("http://localhost:" + port
+                        + "/student/get-by-age-between?val1=" + startAge + "&val2=" + endAge, HttpMethod.GET,
+                request, new ParameterizedTypeReference<Collection<Student>>() {
+                });
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).contains(newStudent);
+    }
+
+    @Test
+    void getFacultyTest() throws Exception {
+        Faculty faculty = new Faculty(2L, "slitherin", "yellow");
+        ResponseEntity<Faculty> response = restTemplate.getForEntity("http://localhost:" + port + "/student"
+                + "/faculty/garry", Faculty.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody()).isEqualTo(faculty);
     }
 }
