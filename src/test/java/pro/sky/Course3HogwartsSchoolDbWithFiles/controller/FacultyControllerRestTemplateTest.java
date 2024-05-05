@@ -1,4 +1,4 @@
-package pro.sky.Course3HogwartsSchoolDbWithFiles;
+package pro.sky.Course3HogwartsSchoolDbWithFiles.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +8,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.FacultyController;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.StudentController;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 
