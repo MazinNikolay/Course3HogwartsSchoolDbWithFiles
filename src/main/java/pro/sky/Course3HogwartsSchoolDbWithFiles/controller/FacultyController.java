@@ -54,7 +54,7 @@ public class FacultyController {
 
     @GetMapping("/get-students/{faculty}")
     @Operation(summary = "Получение студентов факультета")
-    public Collection<Student> findByFaculty(@RequestParam String faculty) {
+    public Collection<Student> findByFaculty(@PathVariable String faculty) {
         return service.findByFaculty(faculty);
     }
 }

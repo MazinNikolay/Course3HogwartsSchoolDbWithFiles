@@ -8,12 +8,12 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.FacultyController;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.controller.StudentController;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.*;
@@ -30,15 +30,17 @@ public class StudentControllerRestTemplateTest {
     private StudentController studentController;
 
     @Autowired
+    private FacultyController facultyController;
+
+    @Autowired
     private TestRestTemplate restTemplate;
 
     @BeforeEach
     void initial() {
-        student.setId(15L);
+        student.setId(1L);
         student.setName("TestName2");
         student.setAge(15);
     }
-
 
     @Test
     void contextLoads() throws Exception {
@@ -91,26 +93,33 @@ public class StudentControllerRestTemplateTest {
         int startAge = 13;
         int endAge = 15;
         Faculty faculty = new Faculty(1L, "griffindor", "red");
+        studentController.createStudent(student);
         Student newStudent = new Student();
-        newStudent.setId(7L);
+        newStudent.setId(2L);
         newStudent.setName("Garry");
         newStudent.setAge(14);
-        Collection<Student> students = new ArrayList<>();
+        studentController.createStudent(newStudent);
         newStudent.setFaculty(faculty);
-        HttpEntity<Collection<Student>> request = new RequestEntity<>(students, HttpMethod.GET, null);
-        ResponseEntity<Collection<Student>> response = restTemplate.exchange("http://localhost:" + port
+        Collection<Student> students = restTemplate.exchange("http://localhost:" + port
                         + "/student/get-by-age-between?val1=" + startAge + "&val2=" + endAge, HttpMethod.GET,
-                request, new ParameterizedTypeReference<Collection<Student>>() {
-                });
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).contains(newStudent);
+                null, new ParameterizedTypeReference<Collection<Student>>() {
+                }).getBody();
+        assertThat(students).isNotEmpty();
+        assertThat(students).contains(newStudent);
     }
 
     @Test
     void getFacultyTest() throws Exception {
-        Faculty faculty = new Faculty(2L, "slitherin", "yellow");
+        Faculty faculty = new Faculty(1L, "slitherin", "yellow");
+        facultyController.createFaculty(faculty);
+        Student newStudent = new Student();
+        newStudent.setId(2L);
+        newStudent.setName("Garry");
+        newStudent.setAge(14);
+        newStudent.setFaculty(faculty);
+        studentController.createStudent(newStudent);
         ResponseEntity<Faculty> response = restTemplate.getForEntity("http://localhost:" + port + "/student"
-                + "/faculty/garry", Faculty.class);
+                + "/faculty/Garry", Faculty.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isEqualTo(faculty);
     }
