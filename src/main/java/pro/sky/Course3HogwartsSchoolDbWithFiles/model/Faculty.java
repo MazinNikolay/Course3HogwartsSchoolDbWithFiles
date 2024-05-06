@@ -9,8 +9,8 @@ import java.util.Objects;
 
 @Entity
 public class Faculty {
-    @Id
     //@SequenceGenerator(name = "gen", allocationSize = 1)
+    @Id
     //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +30,10 @@ public class Faculty {
         this.id = id;
         this.name = name;
         this.color = color;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

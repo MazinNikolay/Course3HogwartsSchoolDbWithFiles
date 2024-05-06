@@ -52,9 +52,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.terracotta.management</groupId>
-            <artifactId>sequence-generator</artifactId>
-            <version>2.5.0</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Avatar;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.AvatarServiceImpl;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
