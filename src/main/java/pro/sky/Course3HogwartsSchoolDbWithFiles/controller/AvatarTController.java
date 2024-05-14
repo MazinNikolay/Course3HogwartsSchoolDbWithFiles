@@ -13,7 +13,7 @@ import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.AvatarServiceImpl;
 import java.util.List;
 
 @RestController
-@Tag(name = "API  для постраничного вывода аватарок")
+@Tag(name = "API  для постраничного вывода списка аватарок")
 @RequestMapping("avatars-get-page")
 public class AvatarTController {
     private final AvatarServiceImpl service;
@@ -25,8 +25,8 @@ public class AvatarTController {
     @GetMapping
     @Operation(summary = "Постраничный вывод")
     public ResponseEntity<List<Avatar>> getPageAvatar(@RequestParam("page") Integer pageNumber,
-                                                      @RequestParam("size") Integer size) {
-        List<Avatar> avatars = service.getAvatarsPage(pageNumber, size);
+                                                      @RequestParam("size") Integer pageSize) {
+        List<Avatar> avatars = service.getAvatarsPage(pageNumber, pageSize);
         return ResponseEntity.ok(avatars);
     }
 }
