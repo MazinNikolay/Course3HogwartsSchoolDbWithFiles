@@ -85,8 +85,8 @@ public class AvatarServiceImpl implements AvatarService {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
-    public List<Avatar> getAvatarsPage(Integer pageNumber, Integer pageSize) {
-        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+    public List<Avatar> getAvatarsPage(Integer pageNumber, Integer size) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, size);
         return avatarRepository.findAll(pageRequest).getContent();
     }
 }

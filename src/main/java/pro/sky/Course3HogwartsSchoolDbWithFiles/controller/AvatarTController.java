@@ -25,8 +25,8 @@ public class AvatarTController {
     @GetMapping
     @Operation(summary = "Постраничный вывод")
     public ResponseEntity<List<Avatar>> getPageAvatar(@RequestParam("page") Integer pageNumber,
-                                                      @RequestParam("size") Integer pageSize) {
-        List<Avatar> avatars = service.getAvatarsPage(pageNumber, pageSize);
+                                                      @RequestParam("size") Integer size) {
+        List<Avatar> avatars = service.getAvatarsPage(pageNumber, size);
         return ResponseEntity.ok(avatars);
     }
 }
