@@ -20,7 +20,7 @@ import java.nio.file.Path;
 
 @RestController
 @RequestMapping("avatar")
-@Tag(name = "API  для раюоты с аватаром")
+@Tag(name = "API  для работы с аватаром")
 public class AvatarController {
     private final AvatarServiceImpl service;
 
