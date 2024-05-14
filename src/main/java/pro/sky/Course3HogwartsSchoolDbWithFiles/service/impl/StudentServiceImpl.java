@@ -4,10 +4,12 @@ import org.springframework.stereotype.Service;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.exceptioms.NotFoundEntityException;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.StudentsByRequest;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.StudentRepository;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -53,5 +55,17 @@ public class StudentServiceImpl implements StudentService {
 
     private void isEntityExist(Long id) {
         repository.findById(id).orElseThrow(() -> new NotFoundEntityException());
+    }
+
+    public Integer getCountStudents() {
+        return repository.getCountStudents();
+    }
+
+    public Double getAvgAgeStudents() {
+        return repository.getAvgAgeStudents();
+    }
+
+    public List<StudentsByRequest> getLastFiveStudents() {
+        return repository.getLastFiveStudents();
     }
 }

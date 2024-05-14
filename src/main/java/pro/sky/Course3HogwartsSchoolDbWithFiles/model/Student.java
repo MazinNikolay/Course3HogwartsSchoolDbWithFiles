@@ -8,16 +8,13 @@ import java.util.Objects;
 
 @Entity
 public class Student {
-    //@SequenceGenerator(name = "gen", allocationSize = 1)
     @Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     @JsonBackReference
-    @JsonIgnore
     private Faculty faculty;
 
     private String name;
