@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.StudentServiceImpl;
 
 import java.util.Collection;
 

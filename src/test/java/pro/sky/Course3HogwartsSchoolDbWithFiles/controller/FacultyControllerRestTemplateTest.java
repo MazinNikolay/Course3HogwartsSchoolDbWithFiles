@@ -9,6 +9,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 
 import java.net.URI;
 import java.util.Collection;

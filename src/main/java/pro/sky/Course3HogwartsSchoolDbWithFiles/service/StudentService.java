@@ -1,6 +1,7 @@
 package pro.sky.Course3HogwartsSchoolDbWithFiles.service;
 
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 
 import java.util.Collection;
 
