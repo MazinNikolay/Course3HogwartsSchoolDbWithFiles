@@ -9,8 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Avatar;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.AvatarServiceImpl;
 
 import java.io.IOException;
 import java.io.InputStream;

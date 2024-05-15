@@ -3,7 +3,6 @@ package pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl;
 import org.springframework.stereotype.Service;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.exceptioms.NotFoundEntityException;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.FacultyRepository;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.FacultyService;
 

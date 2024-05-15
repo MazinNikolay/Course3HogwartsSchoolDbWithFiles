@@ -13,13 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.AvatarRepository;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.FacultyRepository;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.StudentRepository;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.AvatarServiceImpl;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.FacultyServiceImpl;
-import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.StudentServiceImpl;
 
 import java.util.Collection;
 import java.util.Collections;
