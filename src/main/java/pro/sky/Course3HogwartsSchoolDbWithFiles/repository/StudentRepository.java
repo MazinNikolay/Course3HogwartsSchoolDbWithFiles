@@ -3,6 +3,7 @@ package pro.sky.Course3HogwartsSchoolDbWithFiles.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.StudentsByRequest;
 
 import java.util.Collection;
 import java.util.List;

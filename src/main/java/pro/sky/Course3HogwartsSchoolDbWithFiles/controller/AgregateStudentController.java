@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.StudentsByRequest;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.StudentServiceImpl;
 
 import java.util.List;

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.exceptioms.NotFoundEntityException;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
+import pro.sky.Course3HogwartsSchoolDbWithFiles.model.StudentsByRequest;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.StudentRepository;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.StudentService;
 
