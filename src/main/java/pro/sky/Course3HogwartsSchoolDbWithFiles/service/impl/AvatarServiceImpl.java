@@ -2,6 +2,7 @@ package pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Avatar;
@@ -16,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -54,7 +56,6 @@ public class AvatarServiceImpl implements AvatarService {
         avatar.setFilePath(filePath.toString());
         avatar.setFileSize(avatarFile.getSize());
         avatar.setMediaType(avatarFile.getContentType());
-        //avatar.setData(avatarFile.getBytes());
         avatar.setData(generateDataForDb(filePath));
         avatarRepository.save(avatar);
     }
@@ -82,6 +83,11 @@ public class AvatarServiceImpl implements AvatarService {
 
     private String getExtentions(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
+    public List<Avatar> getAvatarsPage(Integer pageNumber, Integer size) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, size);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 }
 
