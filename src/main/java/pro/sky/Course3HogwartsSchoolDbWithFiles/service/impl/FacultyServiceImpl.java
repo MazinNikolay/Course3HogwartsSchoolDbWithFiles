@@ -1,5 +1,7 @@
 package pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.exceptioms.NotFoundEntityException;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Faculty;
@@ -17,41 +19,50 @@ public class FacultyServiceImpl implements FacultyService {
         this.repository = repository;
     }
 
+    Logger logger = LoggerFactory.getLogger(FacultyServiceImpl.class);
+
     @Override
     public Faculty createFaculty(Faculty faculty) {
+        logger.info("Was invoked method for create Faculty");
         return repository.save(faculty);
     }
 
     @Override
     public Faculty getFaculty(Long id) {
+        logger.info("Was invoked method for get Faculty");
         isEntityExist(id);
         return repository.findById(id).get();
     }
 
     @Override
     public Faculty updateFaculty(Faculty faculty) {
+        logger.info("Was invoked method for update Faculty");
         isEntityExist(faculty.getId());
         return repository.save(faculty);
     }
 
     @Override
     public void deleteFaculty(Long id) {
+        logger.info("Was invoked method for delete Faculty");
         isEntityExist(id);
         repository.deleteById(id);
     }
 
     @Override
     public Collection<Faculty> findByColorOrName(String color, String name) {
+        logger.info("Was invoked method for find Faculty by color or name");
         return repository.findByColorContainsIgnoreCaseOrNameContainsIgnoreCase(color, name);
     }
 
     @Override
     public Collection<Student> findByFaculty(String name) {
+        logger.info("Was invoked method for find Faculty");
         return repository.findByNameContainsIgnoreCase(name).getStudents();
     }
 
     private void isEntityExist(Long id) {
+        logger.info("Was invoked method for check Faculty exist");
         repository.findById(id).orElseThrow(() -> new NotFoundEntityException());
+        logger.error("This Faculty is ni exist. id=" + id);
     }
 }
-
