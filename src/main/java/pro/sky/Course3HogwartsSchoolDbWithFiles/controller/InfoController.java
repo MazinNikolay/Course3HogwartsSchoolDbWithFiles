@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "API для получения информации о порте")
 public class InfoController {
     @Value("${server.port}")
-    String port;
+    private String port;
 
     @GetMapping
     @Operation(summary = "Метод для получения порта")

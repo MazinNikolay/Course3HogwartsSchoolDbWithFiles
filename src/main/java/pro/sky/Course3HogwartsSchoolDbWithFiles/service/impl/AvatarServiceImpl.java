@@ -29,7 +29,7 @@ public class AvatarServiceImpl implements AvatarService {
 
     private final AvatarRepository avatarRepository;
     private final StudentService studentService;
-    Logger logger = LoggerFactory.getLogger(AvatarServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(AvatarServiceImpl.class);
 
     @Value("${path.to.avatars.folders}")
     private String avatarsDir;

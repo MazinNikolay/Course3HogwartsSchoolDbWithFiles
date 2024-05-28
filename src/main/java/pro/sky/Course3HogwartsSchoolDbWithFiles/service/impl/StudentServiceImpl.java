@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
 
     private final StudentRepository repository;
 
