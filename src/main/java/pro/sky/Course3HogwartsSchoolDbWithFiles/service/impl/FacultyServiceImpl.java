@@ -63,6 +63,6 @@ public class FacultyServiceImpl implements FacultyService {
     private void isEntityExist(Long id) {
         logger.info("Was invoked method for check Faculty exist");
         repository.findById(id).orElseThrow(() -> new NotFoundEntityException());
-        logger.error("This Faculty is ni exist. id=" + id);
+        logger.error("This Faculty with id {} is not exist", id);
     }
 }
