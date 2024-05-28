@@ -1,6 +1,8 @@
 package pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl;
 
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,7 @@ public class AvatarServiceImpl implements AvatarService {
 
     private final AvatarRepository avatarRepository;
     private final StudentService studentService;
+    private Logger logger = LoggerFactory.getLogger(AvatarServiceImpl.class);
 
     @Value("${path.to.avatars.folders}")
     private String avatarsDir;
@@ -38,6 +41,7 @@ public class AvatarServiceImpl implements AvatarService {
 
     @Override
     public void uploadAvatar(Long studentId, MultipartFile avatarFile) throws IOException {
+        logger.info("Was invoked method for upload Avatar to DB");
         Student student = studentService.getStudent(studentId);
         Path filePath = Path.of(avatarsDir, student + "."
                 + getExtentions(avatarFile.getOriginalFilename()));
@@ -61,6 +65,7 @@ public class AvatarServiceImpl implements AvatarService {
     }
 
     private byte[] generateDataForDb(Path filePath) throws IOException {
+        logger.info("Was invoked method for convert image Avatar");
         try (
                 InputStream is = Files.newInputStream(filePath);
                 BufferedInputStream bis = new BufferedInputStream(is, 1024);
@@ -78,16 +83,18 @@ public class AvatarServiceImpl implements AvatarService {
     }
 
     public Avatar findAvatar(Long studentId) {
+        logger.info("Was invoked method for find Avatar or create");
         return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
     }
 
     private String getExtentions(String fileName) {
+        logger.info("Was invoked method for get file name");
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
     public List<Avatar> getAvatarsPage(Integer pageNumber, Integer size) {
+        logger.info("Was invoked method for get Avatars from DB page present");
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, size);
         return avatarRepository.findAll(pageRequest).getContent();
     }
 }
-
