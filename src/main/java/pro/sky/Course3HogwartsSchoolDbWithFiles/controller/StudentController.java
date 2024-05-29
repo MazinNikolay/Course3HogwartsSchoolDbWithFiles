@@ -9,6 +9,7 @@ import pro.sky.Course3HogwartsSchoolDbWithFiles.model.Student;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.impl.StudentServiceImpl;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("student")
@@ -56,5 +57,23 @@ public class StudentController {
     @Operation(summary = "Получение факультета студента")
     public Faculty getStudentFaculty(@PathVariable String student) {
         return service.getStudentFaculty(student);
+    }
+
+    @GetMapping("/get-all-begining-with-a")
+    @Operation(summary = "Получение студентов, имя которых начинается с \"А\"")
+    public List<String> getAllBeginA() {
+        return service.findAllBeginA();
+    }
+
+    @GetMapping("/get-avg-age")
+    @Operation(summary = "Получение среднего возраста всех студентов")
+    public Double getAvgAge() {
+        return service.getAvgAge();
+    }
+
+    @GetMapping("/get-reduce-result")
+    @Operation(summary = "Получение результата вычисления reduce")
+    public Integer getReduceResult() {
+        return service.getReduceResult();
     }
 }
