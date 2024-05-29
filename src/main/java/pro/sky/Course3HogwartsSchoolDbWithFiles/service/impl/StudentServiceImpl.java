@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
@@ -106,8 +107,7 @@ public class StudentServiceImpl implements StudentService {
 
     public Integer getReduceResult() {
         Long t1 = System.currentTimeMillis();
-        Integer res = Stream.iterate(1, a -> a + 1).limit(1_000_000)
-                .parallel()
+        Integer res = IntStream.iterate(1, a -> a + 1).limit(1_000_000)
                 .reduce(0, (a, b) -> a + b);
         Long t2 = System.currentTimeMillis();
         System.out.println("Время выполнения1: " + (t2 - t1));
