@@ -10,6 +10,8 @@ import pro.sky.Course3HogwartsSchoolDbWithFiles.repository.FacultyRepository;
 import pro.sky.Course3HogwartsSchoolDbWithFiles.service.FacultyService;
 
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class FacultyServiceImpl implements FacultyService {
@@ -64,5 +66,12 @@ public class FacultyServiceImpl implements FacultyService {
         logger.info("Was invoked method for check Faculty exist");
         repository.findById(id).orElseThrow(() -> new NotFoundEntityException());
         logger.error("This Faculty with id {} is not exist", id);
+    }
+
+    public String getLongestFacultyName() {
+        return repository.findAll().stream()
+                .map(e -> e.getName())
+                .max(Comparator.comparing(e -> e.length()))
+                .orElseThrow(() -> new RuntimeException());
     }
 }
