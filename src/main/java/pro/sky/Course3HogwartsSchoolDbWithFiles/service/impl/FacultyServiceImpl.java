@@ -68,7 +68,9 @@ public class FacultyServiceImpl implements FacultyService {
         logger.error("This Faculty with id {} is not exist", id);
     }
 
+    @Override
     public String getLongestFacultyName() {
+        logger.info("Was invoked method \"Get longest faculty name\"");
         return repository.findAll().stream()
                 .map(e -> e.getName())
                 .max(Comparator.comparing(e -> e.length()))

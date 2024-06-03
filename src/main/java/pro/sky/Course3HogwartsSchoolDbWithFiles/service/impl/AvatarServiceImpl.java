@@ -82,6 +82,7 @@ public class AvatarServiceImpl implements AvatarService {
         }
     }
 
+    @Override
     public Avatar findAvatar(Long studentId) {
         logger.info("Was invoked method for find Avatar or create");
         return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
@@ -92,6 +93,7 @@ public class AvatarServiceImpl implements AvatarService {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
+    @Override
     public List<Avatar> getAvatarsPage(Integer pageNumber, Integer size) {
         logger.info("Was invoked method for get Avatars from DB page present");
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, size);
