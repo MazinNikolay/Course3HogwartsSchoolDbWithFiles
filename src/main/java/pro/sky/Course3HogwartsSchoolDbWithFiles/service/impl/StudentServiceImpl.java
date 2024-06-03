@@ -146,9 +146,13 @@ public class StudentServiceImpl implements StudentService {
         }).start();
     }
 
-    private synchronized void printStudentsThreadSync (List<Student> students) {
+    private void printStudentsThreadSync(List<Student> students) {
         new Thread(() -> {
-            students.forEach(e -> System.out.println(e.getName()));
+            students.forEach(e -> printStudentsNameSync(e));
         }).start();
+    }
+
+    private synchronized void printStudentsNameSync(Student student) {
+        System.out.println(student.getName());
     }
 }
