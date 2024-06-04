@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-@RequestMapping("student")
+@RequestMapping("students")
 @Tag(name = "API для работы со студентами")
 public class StudentController {
     private final StudentServiceImpl service;
@@ -75,5 +75,17 @@ public class StudentController {
     @Operation(summary = "Получение результата вычисления reduce")
     public Integer getReduceResult() {
         return service.getReduceResult();
+    }
+
+    @GetMapping("/print-parallel")
+    @Operation(summary = "Получение студентов в параллельном режиме")
+    public void printStudentsParallel() {
+        service.printParallel();
+    }
+
+    @GetMapping("/print-synchronized")
+    @Operation(summary = "Получение студентов в синхронизированном режиме")
+    public void printStudentsSynchronized() {
+        service.printSynchronized();
     }
 }

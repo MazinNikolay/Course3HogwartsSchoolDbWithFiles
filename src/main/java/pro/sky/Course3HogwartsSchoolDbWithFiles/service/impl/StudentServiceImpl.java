@@ -15,7 +15,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 @Service
@@ -74,22 +73,27 @@ public class StudentServiceImpl implements StudentService {
         logger.error("This student with id {} is not found", id);
     }
 
+    @Override
     public Integer getCountStudents() {
         logger.info("Was invoked method \"Get count students\"");
         return repository.getCountStudents();
     }
 
+    @Override
     public Double getAvgAgeStudents() {
         logger.info("Was invoked method \"Get AVG age students\"");
         return repository.getAvgAgeStudents();
     }
 
+    @Override
     public List<StudentsByRequest> getLastFiveStudents() {
         logger.info("Was invoked method \"Get last five students\"");
         return repository.getLastFiveStudents();
     }
 
+    @Override
     public List<String> findAllBeginA() {
+        logger.info("Was invoked method \"Find all begin with A\"");
         List<Student> students = repository.findAll();
         return students.stream()
                 .sorted(Comparator.comparing(e -> e.getName()))
@@ -98,19 +102,57 @@ public class StudentServiceImpl implements StudentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public Double getAvgAge() {
+        logger.info("Was invoked method \"Get AVG age\"");
         List<Student> students = repository.findAll();
         return students.stream()
                 .mapToDouble(e -> e.getAge())
                 .average().orElse(00);
     }
 
+    @Override
     public Integer getReduceResult() {
+        logger.info("Was invoked method \"Get reduce result\"");
         Long t1 = System.currentTimeMillis();
         Integer res = IntStream.iterate(1, a -> a + 1).limit(1_000_000)
                 .reduce(0, (a, b) -> a + b);
         Long t2 = System.currentTimeMillis();
         System.out.println("Время выполнения1: " + (t2 - t1));
         return res;
+    }
+
+    @Override
+    public void printParallel() {
+        logger.info("Was invoked method \"Print parallel students\"");
+        List<Student> students = repository.findAll();
+        students.subList(0, 2).forEach(e -> System.out.println(e.getName()));
+        printStudentsThread(students.subList(2, 4));
+        printStudentsThread(students.subList(4, 6));
+    }
+
+    @Override
+    public void printSynchronized() {
+        logger.info("Was invoked method \"Print synchronized students\"");
+        List<Student> students = repository.findAll();
+        students.subList(0, 2).forEach(e -> System.out.println(e.getName()));
+        printStudentsThreadSync(students.subList(2, 4));
+        printStudentsThreadSync(students.subList(4, 6));
+    }
+
+    private void printStudentsThread(List<Student> students) {
+        new Thread(() -> {
+            students.forEach(e -> System.out.println(e.getName()));
+        }).start();
+    }
+
+    private void printStudentsThreadSync(List<Student> students) {
+        new Thread(() -> {
+            students.forEach(e -> printStudentsNameSync(e));
+        }).start();
+    }
+
+    private synchronized void printStudentsNameSync(Student student) {
+        System.out.println(student.getName());
     }
 }
