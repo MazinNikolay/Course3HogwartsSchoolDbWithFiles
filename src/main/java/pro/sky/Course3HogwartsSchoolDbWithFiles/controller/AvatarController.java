@@ -46,9 +46,11 @@ public class AvatarController {
     @Operation(summary = "Получение фотографии из базы данных")
     public ResponseEntity<byte[]> downloagAvatarFromDb(@PathVariable Long id) {
         Avatar avatar = service.findAvatar(id);
+        //Создаем заголовок, присваиваем ему тип и длину аватара
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(avatar.getMediaType()));
         headers.setContentLength(avatar.getData().length);
+        //Возвращаем ответ с байтовыми данными аватара из БД
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(avatar.getData());
     }
 
@@ -57,9 +59,12 @@ public class AvatarController {
     public void downloadAvatarFromFile(@PathVariable Long id,
                                        HttpServletResponse response) throws IOException {
         Avatar avatar = service.findAvatar(id);
+        //Получение пути к файлу
         Path path = Path.of(avatar.getFilePath());
         try (
+                //Создаем входной стрим из файла по переданному пути
                 InputStream is = Files.newInputStream(path);
+                //Создаем выходной стрим в передаваемый ответ
                 OutputStream os = response.getOutputStream();
         ) {
             response.setStatus(200);
