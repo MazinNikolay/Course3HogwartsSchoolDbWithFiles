@@ -1,4 +1,4 @@
-package pro.sky.Course3HogwartsSchoolDbWithFiles.exceptioms;
+package pro.sky.Course3HogwartsSchoolDbWithFiles.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

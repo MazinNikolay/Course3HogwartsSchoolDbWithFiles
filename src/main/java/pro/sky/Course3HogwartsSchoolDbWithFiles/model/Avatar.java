@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
+//Сущность для записи в БД аватара студента
 @Entity
 public class Avatar {
     @Id
@@ -16,10 +17,13 @@ public class Avatar {
     private long fileSize;
     private String mediaType;
 
+    //Указываем что это большой объект
     @Lob
     private byte[] data;
 
+    //Организация связи один к одному
     @OneToOne
+    //Исключение сериализации
     @JsonIgnore
     private Student student;
 

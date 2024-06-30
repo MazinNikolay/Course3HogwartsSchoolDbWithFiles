@@ -6,15 +6,18 @@ import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Objects;
-
+//Сущность для записи в БД факультета
 @Entity
 public class Faculty {
+    //обозначаем идентификатор
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    //Связь один ко многим со студентами
     @OneToMany(mappedBy = "faculty")
+    //Сериализованое поле
     @JsonManagedReference
+    //пропуск поля при сериализации.... Надо разобраться))
     @JsonIgnore
     private List<Student> students;
 

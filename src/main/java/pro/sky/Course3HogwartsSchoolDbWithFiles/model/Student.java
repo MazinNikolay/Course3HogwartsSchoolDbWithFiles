@@ -4,15 +4,17 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
-
+//Сущность для записи в БД студента
 @Entity
 public class Student {
+    //обозначаем идентификатор
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    //Связь много к одному с идентификатором факультета
     @ManyToOne
     @JoinColumn(name = "faculty_id")
+    //Поле пропускается при сериализации
     @JsonBackReference
     private Faculty faculty;
 

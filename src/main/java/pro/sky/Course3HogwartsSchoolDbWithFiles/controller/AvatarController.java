@@ -33,7 +33,9 @@ public class AvatarController {
     @Operation(summary = "Загрузка в базу данных файла")
     public ResponseEntity<String> uploadAvatar(@PathVariable Long student_id,
                                                @RequestParam MultipartFile avatar) throws IOException {
+        //вызов метода загрузки аватара
         service.uploadAvatar(student_id, avatar);
+        //Проверка размера файла из аргумента
         if (avatar.getSize() > 1024 * 500) {
             return ResponseEntity.badRequest().body("Размер файла превышает ограничения");
         }
