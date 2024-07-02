@@ -89,8 +89,8 @@ public class AvatarServiceImpl implements AvatarService {
         ) {
             //создаем изображение из входного стрима, хранящееся в памяти
             BufferedImage image = ImageIO.read(bis);
-            //Уменьшаем высоту рисунка
-            int height = image.getHeight() / (image.getHeight() / 100);
+            //Сжимаем (масштабируем) рисунок
+            int height = image.getHeight() / (image.getWidth() / 100);
             //Создаем изображение с измененными размерами
             BufferedImage preview = new BufferedImage(100, height, image.getType());
             //Создаем объект для графики, редактируем и переносим наисходный объект
